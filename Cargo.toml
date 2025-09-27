@@ -1,0 +1,87 @@
+[package]
+name = "kingshot-pwa"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Kingshot-inspired mobile defense game built with Bevy, WebGPU, and a PWA shell"
+license = "MIT OR Apache-2.0"
+authors = ["glycogen <lee_ingeun@icloud.com>"]
+repository = "https://github.com/glycogen/kingshot-pwa"
+documentation = "https://github.com/glycogen/kingshot-pwa"
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = []
+p2p = [
+    "dep:matchbox_socket",
+    "dep:bevy_matchbox",
+    "dep:bevy_ggrs",
+    "dep:ggrs",
+]
+
+[dependencies]
+bevy = { version = "0.16.1", default-features = false, features = [
+    "animation",
+    "bevy_asset",
+    "bevy_color",
+    "bevy_core_pipeline",
+    "bevy_pbr",
+    "bevy_render",
+    "bevy_scene",
+    "bevy_state",
+    "bevy_sprite",
+    "bevy_text",
+    "bevy_ui",
+    "bevy_window",
+    "bevy_winit",
+    "png",
+    "webgpu",
+] }
+
+wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
+wasm-bindgen-futures = "0.4"
+console_error_panic_hook = "0.1"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", optional = true }
+serde-wasm-bindgen = "0.6"
+
+js-sys = "0.3"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["fmt", "std"] }
+tracing-wasm = "0.2"
+web-sys = { version = "0.3", features = [
+    "console",
+    "DedicatedWorkerGlobalScope",
+    "ImageBitmap",
+    "ImageBitmapOptions",
+    "MessageEvent",
+    "MessagePort",
+    "Navigator",
+    "OffscreenCanvas",
+    "Performance",
+    "PerformanceTiming",
+    "Window",
+    "WorkerGlobalScope",
+] }
+bevy_window = { version = "0.16.1", default-features = false }
+raw-window-handle = "0.6"
+
+# Optional P2P / rollback stack
+ggrs = { version = "0.11", optional = true, default-features = false, features = ["wasm-bindgen"] }
+bevy_ggrs = { version = "0.18", optional = true, default-features = false, features = ["wasm-bindgen"] }
+matchbox_socket = { version = "0.12", optional = true }
+bevy_matchbox = { version = "0.12", optional = true }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = true

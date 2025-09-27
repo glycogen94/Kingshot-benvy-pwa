@@ -1,0 +1,20 @@
+{
+  "name": "kingshot-pwa",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "wasm:debug": "rm -rf web/pkg && cargo build --target wasm32-unknown-unknown && wasm-bindgen --target web --out-dir web/pkg target/wasm32-unknown-unknown/debug/kingshot_pwa.wasm",
+    "wasm:release": "rm -rf web/pkg && cargo build --release --target wasm32-unknown-unknown && wasm-bindgen --target web --out-dir web/pkg target/wasm32-unknown-unknown/release/kingshot_pwa.wasm",
+    "dev": "npm run wasm:debug && vite dev",
+    "build": "npm run wasm:release && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.8"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "description": "Kingshot mobile defense prototype running in the browser."
+}

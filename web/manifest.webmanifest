@@ -1,0 +1,38 @@
+{
+  "name": "Kingshot PWA Prototype",
+  "short_name": "Kingshot",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050608",
+  "theme_color": "#4da3ff",
+  "description": "Kingshot-inspired defense game running as an installable WebGPU PWA.",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Gameplay layout"
+    },
+    {
+      "src": "/screenshots/mobile.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "label": "Mobile layout"
+    }
+  ]
+}
